@@ -1,0 +1,15 @@
+Documentacao.html
+Analise.html
+BrandAssets.html
+StoreScreenshots.html
+
+lib/
+store/
+uploads/
+
+assets/brand_guide.pdf
+
+*.md
+.git/
+.gitignore
+node_modules/
