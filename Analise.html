@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>multiterapia · análise inicial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0F766E;
+    --teal-700:#0a5953;
+    --teal-50:#e3efed;
+    --coral:#F97362;
+    --coral-50:#fde4df;
+    --light:#F5F1EB;
+    --light-2:#ECE6DA;
+    --paper:#FBF8F2;
+    --border:#E5DFD3;
+    --border-2:#D7CFBF;
+    --muted:#5C7B7A;
+    --ink:#1F2937;
+    --ink-2:#374151;
+    --ok:#16A34A;
+    --warn:#D97706;
+    --bad:#B91C1C;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--light);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .page{max-width:1240px;margin:0 auto;padding:64px 56px 120px}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  h1,h2,h3,h4{font-family:'Poppins';color:var(--ink);margin:0;letter-spacing:-0.01em}
+  h1{font-size:64px;font-weight:600;line-height:1.02;letter-spacing:-0.03em}
+  h2{font-size:34px;font-weight:600;line-height:1.1;letter-spacing:-0.02em}
+  h3{font-size:20px;font-weight:600}
+  h4{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted)}
+  p{margin:0}
+  hr.rule{border:0;border-top:1px solid var(--border);margin:80px 0}
+  a{color:var(--teal);text-decoration:none}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--coral);display:inline-block}
+  .lead{font-size:22px;line-height:1.5;color:var(--ink-2);font-weight:400;max-width:780px}
+
+  /* ----- HEADER ----- */
+  header.hero{display:grid;grid-template-columns:1.4fr .9fr;gap:64px;align-items:end;padding-bottom:56px;border-bottom:1px solid var(--border)}
+  .hero .meta{display:flex;flex-direction:column;gap:14px}
+  .hero .meta .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px dashed var(--border-2);padding-top:10px}
+  .hero .meta .row b{color:var(--ink);font-weight:500}
+  .hero-mark{display:flex;align-items:center;gap:18px;margin-bottom:28px}
+  .hero-mark .iconwrap{width:64px;height:64px;border-radius:16px;background:var(--teal);display:grid;place-items:center;box-shadow:0 8px 24px -12px rgba(15,118,110,.5)}
+  .hero-mark .iconwrap img{width:42px;height:42px}
+  .hero-mark .name{font-size:24px;font-weight:600;letter-spacing:-0.01em}
+  .hero-mark .name span{color:var(--coral)}
+
+  /* ----- SECTION ----- */
+  section{margin-top:96px}
+  .sec-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:40px;align-items:start}
+  .sec-head .num{font-family:'JetBrains Mono';font-size:13px;color:var(--muted);letter-spacing:0.12em;padding-top:14px}
+  .sec-head .num .bar{display:block;width:32px;height:2px;background:var(--coral);margin-bottom:14px}
+  .sec-head h2 + p{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:680px}
+
+  /* ----- BRAND FOUNDATIONS ----- */
+  .foundations{display:grid;grid-template-columns:1.05fr .95fr;gap:32px}
+  .card{background:var(--paper);border:1px solid var(--border);border-radius:18px;padding:28px}
+  .swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  .sw{border-radius:12px;border:1px solid var(--border);overflow:hidden;background:#fff}
+  .sw .chip{height:78px}
+  .sw .info{padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+  .sw .info .n{font-size:13px;font-weight:500;color:var(--ink)}
+  .sw .info .h{font-family:'JetBrains Mono';font-size:11px;color:var(--muted)}
+
+  .type-card .specimen{font-weight:600;font-size:88px;line-height:1;letter-spacing:-0.04em;color:var(--ink);margin:18px 0 6px}
+  .type-card .specimen em{font-style:normal;color:var(--coral)}
+  .type-card .sub{font-size:14px;color:var(--muted)}
+  .type-scale{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;border-top:1px dashed var(--border-2);padding-top:18px}
+  .type-scale div{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+  .type-scale div span:last-child{color:var(--muted);font-family:'JetBrains Mono';font-size:12px}
+
+  .mark-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .mark-trio .m{aspect-ratio:1;border-radius:18px;display:grid;place-items:center;border:1px solid var(--border)}
+  .mark-trio .m.primary{background:var(--teal)}
+  .mark-trio .m.light{background:#fff}
+  .mark-trio .m.dark{background:#0b1220;border-color:#1c2740}
+  .mark-trio .m img{width:54%}
+  .mark-trio .label{margin-top:8px;font-size:12px;text-align:center;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}
+
+  /* ----- IA / FLOW MAP ----- */
+  .flow{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .flow .lane{background:var(--paper);border:1px solid var(--border);border-radius:18px;padding:28px}
+  .flow .lane-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .flow .lane-head .pill{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;padding:5px 10px;border-radius:999px;font-weight:500}
+  .flow .lane.t .pill{background:var(--teal);color:#fff}
+  .flow .lane.p .pill{background:var(--coral-50);color:#b94432}
+  .flow .lane h3{margin:0}
+  .flow .lane h3 small{display:block;font-weight:400;font-size:13px;color:var(--muted);margin-top:2px;letter-spacing:0}
+  .steps{display:flex;flex-direction:column;gap:10px}
+  .step{display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fff}
+  .step .n{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);width:36px;text-align:center;border-right:1px solid var(--border);padding-right:10px;line-height:1.2}
+  .step .lbl{font-size:14px;font-weight:500}
+  .step .lbl small{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:1px}
+  .step .tag{font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted);background:var(--light);padding:3px 7px;border-radius:6px;border:1px solid var(--border)}
+  .shared{margin-top:18px;display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px dashed var(--border-2);border-radius:12px;background:transparent}
+  .shared .tag{background:var(--coral-50);color:#a93826;border:1px solid #f1c8c1}
+  .shared p{font-size:13px;color:var(--ink-2)}
+
+  /* ----- SCREENS REVIEW ----- */
+  .screen-row{display:grid;grid-template-columns:280px 280px 1fr;gap:36px;align-items:start;padding:32px 0;border-top:1px solid var(--border)}
+  .screen-row:first-of-type{border-top:0;padding-top:0}
+  .shot{width:100%;border-radius:24px;overflow:hidden;border:1px solid var(--border);background:var(--light-2);display:block}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.dark{border-color:#1f2a3a;background:#0b1220}
+  .screen-meta{padding-top:6px}
+  .screen-meta .id{font-family:'JetBrains Mono';font-size:12px;color:var(--muted);letter-spacing:0.1em}
+  .screen-meta h3{margin-top:6px}
+  .screen-meta .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+  .screen-meta .t{font-size:11px;padding:3px 8px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase}
+  .notes{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+  .note{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;font-size:14.5px;color:var(--ink-2)}
+  .note .b{width:8px;height:8px;border-radius:50%;margin-top:8px;background:var(--ok)}
+  .note.warn .b{background:var(--warn)}
+  .note.gap .b{background:var(--coral)}
+  .note b{color:var(--ink);font-weight:600}
+
+  /* ----- SYSTEM ----- */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tile{background:var(--paper);border:1px solid var(--border);border-radius:16px;padding:22px;min-height:170px;display:flex;flex-direction:column;gap:8px}
+  .tile h4{margin-bottom:4px}
+  .tile p{font-size:14px;color:var(--ink-2)}
+  .tile ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-2);line-height:1.7}
+
+  /* visual mini-component demos */
+  .demo-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+  .btn-t{background:var(--teal);color:#fff;font-family:Poppins;font-weight:500;font-size:13px;padding:9px 16px;border-radius:12px;border:0}
+  .btn-c{background:var(--coral);color:#fff;font-family:Poppins;font-weight:500;font-size:13px;padding:9px 16px;border-radius:12px;border:0}
+  .btn-g{background:#fff;color:var(--ink);font-family:Poppins;font-weight:500;font-size:13px;padding:8px 14px;border-radius:10px;border:1px solid var(--border)}
+  .chip-row{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{font-size:12px;font-weight:500;padding:5px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--ink-2)}
+  .chip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;padding:4px 9px;border-radius:999px}
+  .status.live{background:var(--coral-50);color:#a93826}
+  .status.conf{background:var(--teal-50);color:var(--teal-700)}
+  .session-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:12px}
+  .session-row .stripe{width:4px;height:36px;border-radius:2px;background:var(--coral)}
+  .session-row .who{font-weight:600}
+  .session-row .who small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+  .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .kpi{background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;text-align:center}
+  .kpi .v{font-size:18px;font-weight:600;color:var(--teal)}
+  .kpi .l{font-size:10.5px;color:var(--muted);text-transform:lowercase}
+
+  /* ----- ASSESSMENT (strengths / gaps) ----- */
+  .assess{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .assess .col{background:var(--paper);border:1px solid var(--border);border-radius:18px;padding:32px}
+  .assess .col h3{font-size:22px;display:flex;align-items:center;gap:10px}
+  .assess .col h3 .ico{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;font-size:13px;color:#fff;font-weight:700}
+  .assess .col.s h3 .ico{background:var(--teal)}
+  .assess .col.g h3 .ico{background:var(--coral)}
+  .assess ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+  .assess li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:14.5px;color:var(--ink-2)}
+  .assess li b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px}
+  .assess li .n{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);padding-top:3px}
+
+  /* ----- ROADMAP ----- */
+  .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .phase{background:var(--paper);border:1px solid var(--border);border-radius:18px;padding:24px;position:relative;overflow:hidden}
+  .phase .ph{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);letter-spacing:0.16em;text-transform:uppercase}
+  .phase h3{font-size:18px;margin-top:6px;margin-bottom:12px}
+  .phase ul{margin:0;padding-left:18px;font-size:13.5px;color:var(--ink-2);line-height:1.7}
+  .phase.now{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .phase.now .ph,.phase.now h3,.phase.now ul{color:#fff}
+  .phase.now ul{color:rgba(255,255,255,.85)}
+  .phase .corner{position:absolute;top:14px;right:16px;width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:11px;font-family:'JetBrains Mono'}
+  .phase:not(.now) .corner{background:var(--light);color:var(--muted)}
+
+  /* ----- FOOTER ----- */
+  footer.foot{margin-top:120px;padding-top:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:12.5px;font-family:'JetBrains Mono';letter-spacing:0.06em}
+
+  @media (max-width:980px){
+    .page{padding:40px 28px}
+    header.hero,.foundations,.flow,.assess{grid-template-columns:1fr}
+    .sec-head{grid-template-columns:1fr}
+    .screen-row{grid-template-columns:1fr 1fr}
+    .roadmap{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:44px}
+  }
+</style>
+</head>
+<body>
+<div class="page" data-screen-label="Análise inicial">
+
+  <!-- ============ HEADER ============ -->
+  <header class="hero">
+    <div>
+      <div class="hero-mark">
+        <div class="iconwrap"><img src="assets/svg/mark_white.svg" alt=""/></div>
+        <div class="name">multiterapia<span>.</span></div>
+      </div>
+      <div class="kicker"><span class="dot"></span> Análise inicial do produto · v1.0</div>
+      <h1 style="margin-top:18px">Um app de saúde<br>compartilhada,<br>desenhado em torno<br>da <em style="font-style:normal;color:var(--coral)">sessão</em>.</h1>
+      <p class="lead" style="margin-top:28px">Multiterapia é um gestor de terapias multidisciplinares — fonoaudiologia, fisioterapia e psicologia — que conecta o consultório do terapeuta à rotina do paciente em um único produto. Esta análise revisa a base de marca, mapeia os fluxos das 10 telas iniciais e aponta onde está sólido, onde tem lacunas e por onde seguir.</p>
+    </div>
+
+    <aside class="meta">
+      <div class="row"><span>Documento</span><b>Análise inicial</b></div>
+      <div class="row"><span>Escopo</span><b>Marca + 10 telas (light/dark)</b></div>
+      <div class="row"><span>Versão</span><b>v1.0 · 2026</b></div>
+      <div class="row"><span>Stack alvo</span><b>Flutter · iOS / Android</b></div>
+      <div class="row"><span>Personas</span><b>Terapeuta · Paciente</b></div>
+      <div class="row"><span>Verticais</span><b>Fono · Fisio · Psico</b></div>
+    </aside>
+  </header>
+
+  <!-- ============ 01 FUNDAÇÕES ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>01 · FUNDAÇÕES</div>
+      <div>
+        <h2>O sistema visual já está coerente — e isso é raro num MVP.</h2>
+        <p>A marca chega com guideline fechado, paleta calibrada, ícone em três variantes, splash light/dark e tipografia única. O essencial para construir interfaces consistentes desde o primeiro sprint já está em pé.</p>
+      </div>
+    </div>
+
+    <div class="foundations">
+      <!-- Color card -->
+      <div class="card">
+        <h4>Paleta</h4>
+        <div class="swatches" style="margin-top:14px">
+          <div class="sw"><div class="chip" style="background:#0F766E"></div><div class="info"><span class="n">Teal · Brand</span><span class="h">#0F766E</span></div></div>
+          <div class="sw"><div class="chip" style="background:#F97362"></div><div class="info"><span class="n">Coral · Accent</span><span class="h">#F97362</span></div></div>
+          <div class="sw"><div class="chip" style="background:#F5F1EB;border-bottom:1px solid var(--border)"></div><div class="info"><span class="n">Light · Surface</span><span class="h">#F5F1EB</span></div></div>
+          <div class="sw"><div class="chip" style="background:#E5DFD3"></div><div class="info"><span class="n">Border</span><span class="h">#E5DFD3</span></div></div>
+          <div class="sw"><div class="chip" style="background:#5C7B7A"></div><div class="info"><span class="n">Muted</span><span class="h">#5C7B7A</span></div></div>
+          <div class="sw"><div class="chip" style="background:#1F2937"></div><div class="info"><span class="n">Ink</span><span class="h">#1F2937</span></div></div>
+        </div>
+        <p style="margin-top:18px;font-size:13.5px;color:var(--ink-2)">Teal carrega a confiança clínica; coral guarda o calor humano — usado com parcimônia, ele marca o momento <i>vivo</i> (sessão acontecendo, CTA do paciente, mensagem ativa). Os neutros bege funcionam como respiro, evitando a frieza típica de software médico.</p>
+      </div>
+
+      <!-- Type + variants -->
+      <div class="card type-card">
+        <h4>Tipografia · Poppins</h4>
+        <div class="specimen">Aa<em>·</em></div>
+        <div class="sub">Light 300 · Regular 400 · Medium 500 · Bold 700</div>
+        <div class="type-scale">
+          <div><span>H1 · Display</span><span>22pt / 500</span></div>
+          <div><span>H2 · Section</span><span>16pt / 500</span></div>
+          <div><span>Body</span><span>12pt / 400</span></div>
+          <div><span>Caption</span><span>10pt / 300</span></div>
+        </div>
+
+        <h4 style="margin-top:26px">Variantes da marca</h4>
+        <div class="mark-trio">
+          <div>
+            <div class="m primary"><img src="assets/svg/mark_white.svg" alt=""/></div>
+            <div class="label">Primário</div>
+          </div>
+          <div>
+            <div class="m light"><img src="assets/svg/icon_light.svg" alt=""/></div>
+            <div class="label">Fundo claro</div>
+          </div>
+          <div>
+            <div class="m dark"><img src="assets/svg/icon_dark.svg" alt=""/></div>
+            <div class="label">Modo escuro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ARQUITETURA ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>02 · ARQUITETURA</div>
+      <div>
+        <h2>Dois aplicativos em um só — terapeuta e paciente.</h2>
+        <p>O onboarding bifurca a experiência logo na entrada. A partir daí, cada persona tem seu próprio shell, mas dividem componentes, paleta e o chat como ponte. Esta decisão é forte: reduz custo de produto e mantém a coerência da marca em dois lados da mesma relação.</p>
+      </div>
+    </div>
+
+    <div class="flow">
+      <!-- Therapist lane -->
+      <div class="lane t">
+        <div class="lane-head">
+          <span class="pill">Terapeuta</span>
+          <h3>Marina, fonoaudióloga<small>Gestão de agenda, pacientes e sessões</small></h3>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="n">04</span><div class="lbl">Hoje<small>Dashboard do dia · KPIs · próximas sessões</small></div><span class="tag">home</span></div>
+          <div class="step"><span class="n">05</span><div class="lbl">Agenda semanal<small>Semana 19 · bloqueio de horários</small></div><span class="tag">calendar</span></div>
+          <div class="step"><span class="n">06</span><div class="lbl">Lista de pacientes<small>Busca · filtro por especialidade</small></div><span class="tag">list</span></div>
+          <div class="step"><span class="n">07</span><div class="lbl">Detalhe do paciente<small>KPIs clínicos · evolução · iniciar sessão</small></div><span class="tag">profile</span></div>
+          <div class="step"><span class="n">09</span><div class="lbl">Sessão · notas<small>Ao vivo · anotações · exercícios</small></div><span class="tag">live</span></div>
+        </div>
+      </div>
+
+      <!-- Patient lane -->
+      <div class="lane p">
+        <div class="lane-head">
+          <span class="pill">Paciente</span>
+          <h3>Carlos, 5 anos · Fono<small>Acompanhamento da jornada terapêutica</small></h3>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="n">01</span><div class="lbl">Onboarding<small>Escolha de perfil · sou terapeuta / paciente</small></div><span class="tag">entry</span></div>
+          <div class="step"><span class="n">02</span><div class="lbl">Login<small>E-mail · senha · Google · Apple</small></div><span class="tag">auth</span></div>
+          <div class="step"><span class="n">03</span><div class="lbl">Cadastro<small>Toggle terapeuta/paciente · especialidade</small></div><span class="tag">auth</span></div>
+          <div class="step"><span class="n">08</span><div class="lbl">Home do paciente<small>Próxima sessão · atividades do dia · tab bar</small></div><span class="tag">home</span></div>
+        </div>
+        <div class="shared">
+          <span class="tag" style="font-family:'JetBrains Mono';font-size:10.5px;padding:3px 8px;border-radius:6px">10 · chat</span>
+          <p>A tela <b>10 · Chat</b> é o ponto de costura — o único componente que pertence aos dois lados ao mesmo tempo. É o canal onde a relação clínica acontece entre sessões.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 REVISÃO TELA A TELA ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>03 · REVISÃO TELA‑A‑TELA</div>
+      <div>
+        <h2>As 10 telas, em light e dark, com notas curtas.</h2>
+        <p>Para cada tela: o que está bem resolvido, onde há tensão de UX, e oportunidades para a próxima rodada de design.</p>
+      </div>
+    </div>
+
+    <div>
+      <!-- 01 onboarding -->
+      <div class="screen-row" data-screen-label="01 onboarding">
+        <div class="shot"><img src="assets/screens/light/01_onboarding.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/01_onboarding.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">01 · ONBOARDING</div>
+          <h3>Escolha de perfil como primeira pergunta</h3>
+          <div class="tags"><span class="t">hero</span><span class="t">bifurcação</span><span class="t">sem fricção</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Decisão certa em uma tela.</b> Pergunta única — "Como você quer entrar?" — resolve o roteamento do produto antes de qualquer formulário.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Faltam 1–2 carrosséis de valor</b> antes do split. Quem nunca ouviu falar do app cai direto no fork sem entender a proposta.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Oportunidade:</b> animar a transição do hero teal → cartão branco. O traço da marca pede movimento orgânico.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 login -->
+      <div class="screen-row" data-screen-label="02 login">
+        <div class="shot"><img src="assets/screens/light/02_login.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/02_login.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">02 · LOGIN</div>
+          <h3>Padrão sólido, microcopy quente</h3>
+          <div class="tags"><span class="t">auth</span><span class="t">social</span><span class="t">microcopy</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>"Bem‑vinda de volta. Entre para continuar seu cuidado."</b> — o copy carrega a marca sem perder a função.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Login social não diferencia personas.</b> Se o cadastro pergunta perfil, o login também precisa saber para qual ambiente entrar.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Considerar magic-link / passkey.</b> Saúde tem alta taxa de senha esquecida — vale validar com usuários reais.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 cadastro -->
+      <div class="screen-row" data-screen-label="03 cadastro">
+        <div class="shot"><img src="assets/screens/light/03_cadastro.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/03_cadastro.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">03 · CADASTRO</div>
+          <h3>Toggle terapeuta/paciente no topo do form</h3>
+          <div class="tags"><span class="t">form</span><span class="t">conditional</span><span class="t">compliance</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Especialidade como chips visíveis</b> (Fono / Fisio / Psico) é melhor que dropdown — antecipa as três verticais do negócio.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Densidade alta para mobile.</b> 7 campos + termos em uma tela só. Considerar 2 passos com indicador.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Registro profissional</b> (CRFa/CREFITO/CRP) precisa de validação real — campo livre vira problema na operação.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 terapeuta hoje -->
+      <div class="screen-row" data-screen-label="04 terapeuta hoje">
+        <div class="shot"><img src="assets/screens/light/04_terapeuta_hoje.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/04_terapeuta_hoje.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">04 · TERAPEUTA · HOJE</div>
+          <h3>Dashboard que cabe na primeira dobra</h3>
+          <div class="tags"><span class="t">home</span><span class="t">kpi</span><span class="t">status</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>3 KPIs · 3 sessões</b> — densidade exata para abrir o dia. Cores codificam status (em andamento, confirmada, futura).</p></div>
+            <div class="note warn"><span class="b"></span><p><b>FAB coral solto</b> sem rótulo. Nova sessão? Bloquear horário? Adicionar paciente? O ícone "+" sozinho pesa em onboarding.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Sem tab bar</b> visível para o terapeuta — como ele navega entre Hoje, Agenda, Pacientes? Falta o shell de navegação inferior.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 agenda -->
+      <div class="screen-row" data-screen-label="05 agenda semanal">
+        <div class="shot"><img src="assets/screens/light/05_agenda_semanal.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/05_agenda_semanal.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">05 · AGENDA SEMANAL</div>
+          <h3>Sessões coloridas por especialidade</h3>
+          <div class="tags"><span class="t">calendar</span><span class="t">color-coding</span><span class="t">block</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Codificação por cor</b> (coral=fono, verde=fisio, lilás=psico) é elegante e antecipa a multi‑disciplina prometida pelo nome.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Visão semanal sem timeline</b> — não dá pra ver "buraco entre 11:30 e 13:00" sem ler o aviso. Considerar um mini timeline lateral.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>"Bloquear horário"</b> é a única ação. Falta criar sessão a partir da agenda — fluxo comum no consultório.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 lista -->
+      <div class="screen-row" data-screen-label="06 lista pacientes">
+        <div class="shot"><img src="assets/screens/light/06_lista_de_pacientes.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/06_lista_de_pacientes.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">06 · LISTA DE PACIENTES</div>
+          <h3>Busca + filtros por especialidade</h3>
+          <div class="tags"><span class="t">list</span><span class="t">filter</span><span class="t">search</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Próxima sessão em destaque</b> em cada card — informação operacional certa para um terapeuta correndo entre atendimentos.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Sem ordenação</b> visível. Por nome? Por proximidade da próxima sessão? Estado padrão precisa ser explicado.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Iniciais coloridas</b> (CM, LR, JP) são bonitas mas anônimas. Considerar foto opcional uploadable pelo responsável.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 detalhe paciente -->
+      <div class="screen-row" data-screen-label="07 detalhe paciente">
+        <div class="shot"><img src="assets/screens/light/07_detalhe_do_paciente.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/07_detalhe_do_paciente.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">07 · DETALHE DO PACIENTE</div>
+          <h3>Evolução como gráfico, sessão a um toque</h3>
+          <div class="tags"><span class="t">profile</span><span class="t">chart</span><span class="t">cta</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>"Iniciar sessão" no rodapé</b> — CTA pesado, próximo do polegar. Decisão de UX correta para uso em consultório.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>"↑18% progresso" em coral</b> confunde — coral é cor de cuidado/alerta no resto do app. Para métrica positiva, usar tom positivo da paleta.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Sem histórico de sessões</b> visível. Onde estão as notas das 12 sessões anteriores? Tab interna pode resolver.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 paciente home -->
+      <div class="screen-row" data-screen-label="08 paciente home">
+        <div class="shot"><img src="assets/screens/light/08_paciente_home.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/08_paciente_home.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">08 · PACIENTE · HOME</div>
+          <h3>Outro shell, mesma marca</h3>
+          <div class="tags"><span class="t">home</span><span class="t">tab-bar</span><span class="t">task</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Cartão teal full‑bleed</b> com a próxima sessão é o herói da tela. "Entrar na sala" é a ação certa, no lugar certo.</p></div>
+            <div class="note"><span class="b"></span><p><b>Atividades 2/3 com tarefas marcadas</b> — gamificação leve, sem infantilizar. Bom equilíbrio para um paciente de 5 anos com responsável.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Tab bar de 4 ícones sem labels</b> — explorar versão com label para acessibilidade. O 3º ícone (sinal de vida?) precisa de nome.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 09 sessão -->
+      <div class="screen-row" data-screen-label="09 sessão notas">
+        <div class="shot"><img src="assets/screens/light/09_sessao_notas.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/09_sessao_notas.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">09 · SESSÃO · NOTAS</div>
+          <h3>O coração do produto — vale o triplo do investimento</h3>
+          <div class="tags"><span class="t">live</span><span class="t">notes</span><span class="t">exercises</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>"ao vivo" + cronômetro 12:34</b> + "Finalizar sessão" em coral — toda a urgência do momento clínico em uma tela só.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Anotação textual livre</b> resolve fono, mas fisio precisa de protocolos com séries/reps, e psico pede campos estruturados (SOAP). Considerar templates por vertical.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Onde fica a chamada de vídeo?</b> A tela 10 mostra ícones de voz/vídeo no header — o link com a sessão ao vivo ainda não está claro.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 chat -->
+      <div class="screen-row" data-screen-label="10 chat">
+        <div class="shot"><img src="assets/screens/light/10_chat.png" alt=""/></div>
+        <div class="shot dark"><img src="assets/screens/dark/10_chat.png" alt=""/></div>
+        <div class="screen-meta">
+          <div class="id">10 · CHAT</div>
+          <h3>A ponte entre as duas pontas do produto</h3>
+          <div class="tags"><span class="t">messaging</span><span class="t">shared</span><span class="t">async</span></div>
+          <div class="notes">
+            <div class="note"><span class="b"></span><p><b>Bolhas teal (terapeuta) vs creme (responsável)</b> — sistema cromático claro e idêntico ao resto do app.</p></div>
+            <div class="note warn"><span class="b"></span><p><b>Compliance.</b> Chat em saúde precisa de logs, retenção e disclaimers — não é WhatsApp clínico. Banner de termos na primeira conversa.</p></div>
+            <div class="note gap"><span class="b"></span><p><b>Quick replies clínicos</b> ("Posso reagendar?", "Como foi o exercício?") economizam tempo de quem responde 30+ mensagens por dia.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 SISTEMA OBSERVADO ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>04 · SISTEMA OBSERVADO</div>
+      <div>
+        <h2>Os componentes que já se repetem nas 10 telas.</h2>
+        <p>Inventário dos blocos visuais que apareceram pelo menos duas vezes. São candidatos naturais a virar componentes nomeados no design system.</p>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="tile">
+        <h4>Botões</h4>
+        <p>Dois pesos. Teal para a ação primária recorrente; coral para o gesto que marca o momento (criar, iniciar, finalizar).</p>
+        <div class="demo-row">
+          <button class="btn-t">Entrar</button>
+          <button class="btn-c">Iniciar sessão</button>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Chips de filtro</h4>
+        <p>Aparecem em cadastro (especialidade) e lista de pacientes (filtro). Mesmo componente, dois usos.</p>
+        <div class="demo-row chip-row">
+          <span class="chip on">Todos</span>
+          <span class="chip">Fono</span>
+          <span class="chip">Fisio</span>
+          <span class="chip">Psico</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Status / pílulas</h4>
+        <p>Codificam estado de sessão. Coral = ao vivo / em andamento. Teal claro = confirmada.</p>
+        <div class="demo-row">
+          <span class="status live">● ao vivo</span>
+          <span class="status conf">Confirmada</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Linha de sessão</h4>
+        <p>Cartão horário + nome + especialidade + status. Aparece em 04, 05, 06 — base da agenda.</p>
+        <div class="session-row" style="margin-top:auto">
+          <span class="stripe"></span>
+          <span class="who">09:00 · Carlos M.<small>Fono · 45 min</small></span>
+          <span class="status live">Em andamento</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>KPI cards</h4>
+        <p>Três métricas numéricas em linha, valor em teal, label muted. Hoje (04) e Detalhe (07) usam o mesmo molde.</p>
+        <div class="kpi-row" style="margin-top:auto">
+          <div class="kpi"><div class="v">8</div><div class="l">sessões</div></div>
+          <div class="kpi"><div class="v">12</div><div class="l">pacientes</div></div>
+          <div class="kpi"><div class="v">5h30</div><div class="l">previstas</div></div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Avatar inicial</h4>
+        <p>Círculo teal com 1–2 letras. Substituível por foto quando existir. Usado em todas as listas.</p>
+        <div class="demo-row" style="margin-top:auto">
+          <span style="width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px">CM</span>
+          <span style="width:40px;height:40px;border-radius:50%;background:var(--coral-50);color:#a93826;display:grid;place-items:center;font-weight:600;font-size:14px">A</span>
+          <span style="width:40px;height:40px;border-radius:50%;background:var(--teal-50);color:var(--teal-700);display:grid;place-items:center;font-weight:600;font-size:14px">LR</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Input field</h4>
+        <p>Borda fina, raio 10–12px, ícone à esquerda. Padrão único em login, cadastro, busca e chat.</p>
+        <div style="margin-top:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:10px;padding:8px 10px;background:#fff">
+          <span style="color:var(--muted)">🔍</span>
+          <span style="font-size:12px;color:var(--muted)">Buscar paciente…</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <h4>Cartão de seção</h4>
+        <p>Container com 1px border, 18px radius, fundo papel. Estrutura quase todas as telas internas.</p>
+        <div style="margin-top:auto;border:1px solid var(--border);border-radius:14px;background:#fff;padding:12px">
+          <div style="font-size:12px;font-weight:600">Anotações da sessão</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5">Carlos progrediu bem nos exercícios de fonação…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 PONTOS FORTES / LACUNAS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>05 · DIAGNÓSTICO</div>
+      <div>
+        <h2>O que segurar — e o que ainda precisa de resposta.</h2>
+        <p>Resumo executivo da revisão. Use como checklist para a próxima rodada de design.</p>
+      </div>
+    </div>
+
+    <div class="assess">
+      <div class="col s">
+        <h3><span class="ico">✓</span> Pontos fortes</h3>
+        <ul>
+          <li><span class="n">01</span><span><b>Marca pronta antes do produto.</b> Brand guide, três variantes de ícone, splash em 1x/2x/3x, light/dark — base de produção já está em pé.</span></li>
+          <li><span class="n">02</span><span><b>Paleta com função, não decoração.</b> Teal = confiança, coral = momento vivo, bege = respiro. Cada cor carrega significado clínico.</span></li>
+          <li><span class="n">03</span><span><b>Bifurcação clara dos personas.</b> Terapeuta e paciente têm shells diferentes mas dividem chat, paleta e linguagem — economiza produto sem perder especificidade.</span></li>
+          <li><span class="n">04</span><span><b>Microcopy quente em PT‑BR.</b> "cuidado conectado", "Bem‑vinda de volta", "Entrar na sala" — soam humanos, não institucionais.</span></li>
+          <li><span class="n">05</span><span><b>Dark mode tratado como cidadão de primeira.</b> Não é inversão automática — bordas, contrastes e elevações foram redesenhados.</span></li>
+        </ul>
+      </div>
+
+      <div class="col g">
+        <h3><span class="ico">!</span> Lacunas e atenções</h3>
+        <ul>
+          <li><span class="n">01</span><span><b>Falta o shell de navegação do terapeuta.</b> Paciente tem tab bar (tela 08), terapeuta não — como ele transita entre Hoje, Agenda, Pacientes, Chat?</span></li>
+          <li><span class="n">02</span><span><b>Templates clínicos por vertical.</b> Notas de sessão (09) servem fono; fisio precisa de séries/reps; psico precisa de SOAP. Um único editor não escala.</span></li>
+          <li><span class="n">03</span><span><b>Validação de registro profissional.</b> CRFa/CREFITO/CRP como campo livre vira problema regulatório. Integração com base profissional é trabalho de descoberta.</span></li>
+          <li><span class="n">04</span><span><b>Compliance LGPD do chat.</b> Conversas clínicas têm regras de retenção, consentimento e portabilidade. Precisa de auditoria jurídica antes do beta.</span></li>
+          <li><span class="n">05</span><span><b>Estados vazios e de erro.</b> As 10 telas mostram o caminho feliz. Lista vazia, erro de rede, sessão cancelada, paciente sem evolução ainda não existem.</span></li>
+          <li><span class="n">06</span><span><b>Coral usado para "progresso ↑18%"</b> (07) conflita com coral usado para "alerta / ao vivo". Definir semântica única por cor.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 ROADMAP ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>06 · POR ONDE SEGUIR</div>
+      <div>
+        <h2>Quatro fases para sair das 10 telas para um beta privado.</h2>
+        <p>Ordenado por dependência: cada fase desbloqueia a próxima. Cronograma de exemplo, não compromisso.</p>
+      </div>
+    </div>
+
+    <div class="roadmap">
+      <div class="phase now">
+        <div class="corner">01</div>
+        <div class="ph">Agora · 2 semanas</div>
+        <h3>Fechar o shell</h3>
+        <ul>
+          <li>Tab bar do terapeuta</li>
+          <li>Estados vazios + loading</li>
+          <li>FAB com rótulo de ação</li>
+          <li>Tokens em JSON / Flutter theme</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="corner">02</div>
+        <div class="ph">Próxima · 3–4 semanas</div>
+        <h3>Profundidade clínica</h3>
+        <ul>
+          <li>Templates por vertical (fono · fisio · psico)</li>
+          <li>Histórico de sessões no perfil</li>
+          <li>Bloqueio / criação de sessão na agenda</li>
+          <li>Anexo de exercícios da sessão</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="corner">03</div>
+        <div class="ph">Depois · 4–6 semanas</div>
+        <h3>Conectividade</h3>
+        <ul>
+          <li>Sala de vídeo integrada à sessão</li>
+          <li>Quick replies + status do chat</li>
+          <li>Notificações (lembrete · andamento)</li>
+          <li>Login social por perfil</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="corner">04</div>
+        <div class="ph">Beta · 6+ semanas</div>
+        <h3>Confiança e escala</h3>
+        <ul>
+          <li>Validação de registro profissional</li>
+          <li>Auditoria LGPD do chat clínico</li>
+          <li>Foto de paciente + permissões</li>
+          <li>Métricas de retenção e adesão</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>MULTITERAPIA · ANÁLISE INICIAL v1.0</span>
+    <span>10 TELAS · 2 PERSONAS · 3 VERTICAIS</span>
+    <span>2026 · CUIDADO CONECTADO</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Política de Privacidade · multiterapia</title>
+<meta name="description" content="Como o multiterapia coleta, usa, armazena e protege os dados pessoais e clínicos de terapeutas e pacientes. Conformidade com a LGPD." />
+<meta name="robots" content="index,follow" />
+<link rel="icon" type="image/svg+xml" href="assets/svg/icon_primary.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0F766E; --teal-700:#0a5953; --teal-50:#e3efed;
+    --coral:#F97362; --coral-50:#fde4df;
+    --light:#F5F1EB; --paper:#FBF8F2;
+    --border:#E5DFD3; --border-2:#D7CFBF;
+    --muted:#5C7B7A; --ink:#1F2937; --ink-2:#374151;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0;background:var(--light);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.65}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{margin:0;font-family:'Poppins';letter-spacing:-0.02em;line-height:1.15;color:var(--ink)}
+  h1{font-size:56px;font-weight:600}
+  h2{font-size:28px;font-weight:600;margin-top:56px;margin-bottom:18px;scroll-margin-top:90px}
+  h3{font-size:18px;font-weight:600;margin-top:28px;margin-bottom:10px}
+  p{margin:0 0 16px}
+  ul,ol{margin:0 0 16px;padding-left:22px}
+  li{margin-bottom:8px}
+  strong{font-weight:600;color:var(--ink)}
+
+  .container{max-width:880px;margin:0 auto;padding:0 32px}
+
+  nav.top{position:sticky;top:0;z-index:10;background:rgba(245,241,235,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(229,223,211,.6)}
+  nav.top .row{max-width:1280px;margin:0 auto;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:18px;letter-spacing:-0.01em}
+  .brand .ic{width:36px;height:36px;border-radius:10px;background:var(--teal);display:grid;place-items:center;box-shadow:0 6px 18px -8px rgba(15,118,110,.55)}
+  .brand .ic img{width:22px;height:22px}
+  .brand em{font-style:normal;color:var(--coral)}
+  .back{font-size:14px;color:var(--ink-2)}
+  .back:hover{color:var(--teal);text-decoration:none}
+
+  header.hero{padding:80px 0 40px}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;color:var(--muted);margin-bottom:24px}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  .updated{margin-top:28px;font-size:14px;color:var(--muted)}
+  .updated b{color:var(--ink);font-weight:500}
+
+  .toc{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px 28px;margin:48px 0 0}
+  .toc h4{margin:0 0 14px;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .toc ol{margin:0;padding-left:20px;font-size:15px;columns:2;column-gap:32px}
+  .toc li{margin-bottom:6px;break-inside:avoid}
+  .toc a{color:var(--ink-2)}
+
+  .content{padding:24px 0 80px;font-size:16px;color:var(--ink-2)}
+  .content p, .content li{font-size:16px}
+
+  .note{background:var(--paper);border:1px solid var(--border);border-left:4px solid var(--coral);border-radius:10px;padding:16px 20px;margin:16px 0;font-size:14.5px;color:var(--ink-2)}
+  .note b{color:var(--ink)}
+
+  .placeholder{background:#FEF3C7;border:1px dashed #D97706;border-radius:6px;padding:2px 8px;font-family:ui-monospace,monospace;font-size:13.5px;color:#92400E;font-weight:500}
+
+  table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-size:14.5px;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  thead{background:var(--paper)}
+  th, td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-weight:600;font-size:13px;letter-spacing:0.04em;color:var(--ink);text-transform:uppercase}
+  tbody tr:last-child td{border-bottom:0}
+
+  footer{background:var(--ink);color:#fff;padding:48px 0 32px;margin-top:48px}
+  footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  footer .b{display:flex;align-items:center;gap:12px;color:#fff}
+  footer .b .ic{width:32px;height:32px;border-radius:8px;background:var(--teal);display:grid;place-items:center}
+  footer .b .ic img{width:20px;height:20px}
+  footer .links{display:flex;gap:24px;font-size:14px;color:rgba(255,255,255,.7)}
+  footer .links a:hover{color:var(--coral);text-decoration:none}
+  footer .copy{font-size:13px;color:rgba(255,255,255,.5);width:100%;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+
+  @media (max-width:720px){
+    h1{font-size:40px} h2{font-size:24px}
+    .toc ol{columns:1}
+    nav.top .row{padding:0 24px}
+    header.hero{padding:48px 0 24px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="row">
+    <a class="brand" href="Landing.html">
+      <span class="ic"><img src="assets/svg/mark_white.svg" alt=""/></span>
+      <span><b>multiterapia</b><em>.</em></span>
+    </a>
+    <a class="back" href="Landing.html">← Voltar ao site</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="kicker"><span class="dot"></span> Documento legal</span>
+    <h1>Política de<br/>Privacidade.</h1>
+    <p class="updated">Última atualização: <b>15 de maio de 2026</b> · Versão 1.0</p>
+
+    <div class="toc">
+      <h4>Sumário</h4>
+      <ol>
+        <li><a href="#s1">Quem somos</a></li>
+        <li><a href="#s2">A quem se aplica</a></li>
+        <li><a href="#s3">Dados que coletamos</a></li>
+        <li><a href="#s4">Como usamos os dados</a></li>
+        <li><a href="#s5">Bases legais (LGPD)</a></li>
+        <li><a href="#s6">Compartilhamento</a></li>
+        <li><a href="#s7">Armazenamento e retenção</a></li>
+        <li><a href="#s8">Segurança da informação</a></li>
+        <li><a href="#s9">Seus direitos</a></li>
+        <li><a href="#s10">Cookies e tecnologias similares</a></li>
+        <li><a href="#s11">Dados de menores</a></li>
+        <li><a href="#s12">Transferência internacional</a></li>
+        <li><a href="#s13">Alterações nesta política</a></li>
+        <li><a href="#s14">Contato e Encarregado (DPO)</a></li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<section class="content">
+  <div class="container">
+
+    <p>O <strong>multiterapia</strong> é um aplicativo de gestão de cuidados terapêuticos multidisciplinares (fonoaudiologia, fisioterapia, psicologia e correlatas) que conecta terapeutas e pacientes. Pela própria natureza do serviço, lidamos com <strong>dados pessoais sensíveis</strong> relativos à saúde — e tratamos essa responsabilidade com seriedade.</p>
+
+    <p>Esta Política de Privacidade explica, em linguagem clara, quais dados coletamos, por que coletamos, com quem compartilhamos, por quanto tempo guardamos e quais são os seus direitos como titular. Ela está em conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais — Lei nº 13.709/2018 (LGPD)</strong>.</p>
+
+    <div class="note">
+      <b>Resumo de 30 segundos:</b> coletamos só o que precisamos para o app funcionar, nunca vendemos seus dados, usamos criptografia em trânsito, e você pode pedir exportação ou exclusão dos seus dados a qualquer momento pelo e-mail no fim desta página.
+    </div>
+
+    <h2 id="s1">1. Quem somos</h2>
+    <p>O controlador dos dados pessoais é:</p>
+    <ul>
+      <li><strong>Razão social:</strong> <span class="placeholder">{{RAZÃO SOCIAL DA EMPRESA}}</span></li>
+      <li><strong>CNPJ:</strong> <span class="placeholder">{{CNPJ}}</span></li>
+      <li><strong>Endereço:</strong> <span class="placeholder">{{ENDEREÇO COMPLETO COM CEP}}</span></li>
+      <li><strong>Contato:</strong> <span class="placeholder">{{E-MAIL DE CONTATO GERAL}}</span></li>
+    </ul>
+    <p>Daqui em diante, nos referimos a essa entidade como “<strong>multiterapia</strong>”, “nós” ou “nossa”.</p>
+
+    <h2 id="s2">2. A quem esta política se aplica</h2>
+    <p>Esta política se aplica a três grupos de usuários:</p>
+    <ul>
+      <li><strong>Terapeutas</strong> que utilizam o app para gerenciar sua prática clínica (agenda, prontuário, anotações de sessão, cobrança).</li>
+      <li><strong>Pacientes</strong> (ou seus responsáveis legais, quando menores de idade) que recebem cuidado terapêutico através de profissionais que utilizam o multiterapia.</li>
+      <li><strong>Visitantes</strong> do nosso site institucional, mesmo que não tenham cadastro no app.</li>
+    </ul>
+
+    <h2 id="s3">3. Dados que coletamos</h2>
+
+    <h3>3.1. Dados que você nos fornece diretamente</h3>
+    <table>
+      <thead>
+        <tr><th>Categoria</th><th>Exemplos</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Dados cadastrais</td><td>Nome completo, e-mail, telefone, data de nascimento, CPF, foto de perfil.</td></tr>
+        <tr><td>Dados profissionais (terapeutas)</td><td>Registro no conselho profissional (CRFa, CREFITO, CRP etc.), especialidade, endereço do consultório, dados bancários para recebimento.</td></tr>
+        <tr><td>Dados de saúde (pacientes) — <em>sensíveis</em></td><td>Histórico clínico, anotações de sessão, plano terapêutico, evolução, exercícios prescritos, arquivos anexados pelo terapeuta.</td></tr>
+        <tr><td>Comunicações</td><td>Mensagens trocadas no chat clínico, anexos enviados, confirmações de consulta.</td></tr>
+        <tr><td>Pagamentos</td><td>Dados de cobrança e recibo (terapeutas com plano pago). O número completo do cartão é processado por adquirente parceira e não fica em nossos servidores.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2. Dados coletados automaticamente</h3>
+    <ul>
+      <li><strong>Dados de uso e dispositivo:</strong> versão do app, modelo do aparelho, sistema operacional, idioma, fuso horário, logs de erro e crash reports.</li>
+      <li><strong>Identificadores:</strong> ID anônimo de instalação, ID de push notification.</li>
+      <li><strong>Endereço IP</strong> e dados aproximados de geolocalização (cidade/estado), para segurança e prevenção de fraude.</li>
+    </ul>
+
+    <h3>3.3. O que NÃO coletamos</h3>
+    <ul>
+      <li>Não coletamos sua localização precisa em segundo plano.</li>
+      <li>Não acessamos sua câmera, microfone ou contatos sem ação explícita sua (por exemplo, anexar uma foto).</li>
+      <li>Não rastreamos sua navegação fora do app multiterapia.</li>
+      <li>Não fazemos perfil de marketing comportamental.</li>
+    </ul>
+
+    <h2 id="s4">4. Como usamos os dados</h2>
+    <p>Usamos os dados para os seguintes propósitos:</p>
+    <ol>
+      <li><strong>Prestar o serviço:</strong> criar e manter sua conta, exibir agenda, salvar anotações de sessão, entregar mensagens do chat clínico, processar pagamentos.</li>
+      <li><strong>Cuidado terapêutico:</strong> permitir que terapeutas e pacientes vinculados troquem informações clínicas necessárias ao tratamento.</li>
+      <li><strong>Segurança:</strong> detectar uso indevido, autenticar sessões, prevenir fraudes e proteger a integridade dos prontuários.</li>
+      <li><strong>Comunicação operacional:</strong> avisar sobre mudanças importantes no serviço, atualizações desta política e respostas a solicitações de suporte.</li>
+      <li><strong>Cumprimento legal:</strong> atender obrigações fiscais, contábeis, sanitárias e ordens judiciais.</li>
+      <li><strong>Melhoria do produto:</strong> análise estatística agregada (sem identificar usuários individualmente) para entender quais funções são usadas e priorizar melhorias.</li>
+    </ol>
+
+    <h2 id="s5">5. Bases legais (LGPD)</h2>
+    <p>Tratamos seus dados sempre com fundamento em uma das hipóteses do artigo 7º — e, para dados sensíveis de saúde, do artigo 11 — da LGPD:</p>
+    <table>
+      <thead><tr><th>Finalidade</th><th>Base legal</th></tr></thead>
+      <tbody>
+        <tr><td>Execução do contrato (prestação do serviço)</td><td>Art. 7º, V</td></tr>
+        <tr><td>Tratamento de dados de saúde do paciente</td><td>Art. 11, II, “a” — tutela da saúde, por profissional de saúde</td></tr>
+        <tr><td>Cumprimento de obrigação legal/regulatória</td><td>Art. 7º, II</td></tr>
+        <tr><td>Legítimo interesse (segurança, antifraude, melhoria estatística)</td><td>Art. 7º, IX</td></tr>
+        <tr><td>Consentimento (marketing, comunicações opcionais)</td><td>Art. 7º, I</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="s6">6. Com quem compartilhamos seus dados</h2>
+    <p>Não vendemos dados pessoais. Compartilhamos somente com:</p>
+    <ul>
+      <li><strong>Outros usuários do app vinculados a você:</strong> seu terapeuta vê seus dados clínicos; você vê o nome e a especialidade do seu terapeuta. Nada além disso é exposto entre usuários.</li>
+      <li><strong>Operadores (sub-contratados) que nos ajudam a operar o serviço:</strong>
+        <ul>
+          <li><strong>Google Firebase</strong> (autenticação, banco de dados Firestore, hospedagem, notificações) — <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">política de privacidade</a></li>
+          <li><strong>Adquirente de pagamento:</strong> <span class="placeholder">{{NOME DO PROCESSADOR DE PAGAMENTOS — ex.: Stripe, Pagar.me, Asaas}}</span></li>
+          <li><strong>Provedor de e-mail transacional:</strong> <span class="placeholder">{{ex.: SendGrid, AWS SES}}</span></li>
+        </ul>
+      </li>
+      <li><strong>Autoridades públicas</strong>, quando exigido por lei, ordem judicial ou processo regulatório legítimo.</li>
+    </ul>
+
+    <h2 id="s7">7. Armazenamento e tempo de retenção</h2>
+    <ul>
+      <li><strong>Conta ativa:</strong> mantemos seus dados enquanto sua conta estiver ativa.</li>
+      <li><strong>Prontuários clínicos:</strong> mantidos por, no mínimo, <strong>20 (vinte) anos</strong> contados do último atendimento, conforme exigência do Conselho Federal de Medicina (Resolução CFM nº 1.821/2007) e normas correlatas dos conselhos profissionais — mesmo após o encerramento da conta do terapeuta ou paciente.</li>
+      <li><strong>Dados financeiros e fiscais:</strong> 5 (cinco) anos, conforme legislação tributária.</li>
+      <li><strong>Logs de acesso e segurança:</strong> 6 (seis) meses, conforme Marco Civil da Internet (Lei nº 12.965/2014).</li>
+      <li><strong>Dados de marketing/comunicação opcional:</strong> até a revogação do consentimento.</li>
+    </ul>
+
+    <h2 id="s8">8. Segurança da informação</h2>
+    <p>Adotamos medidas técnicas e administrativas para proteger seus dados:</p>
+    <ul>
+      <li>Criptografia em trânsito (TLS 1.2+ para todas as comunicações cliente-servidor).</li>
+      <li>Senhas armazenadas com hash unidirecional (não é possível recuperá-las em texto puro).</li>
+      <li>Controle de acesso por perfil (terapeuta acessa apenas seus pacientes; paciente acessa apenas seu próprio prontuário).</li>
+      <li>Backups regulares e monitoramento de integridade.</li>
+      <li>Revisão periódica de permissões e acessos administrativos.</li>
+    </ul>
+    <p>Ainda assim, nenhuma plataforma é 100% imune. Em caso de incidente que envolva risco relevante aos titulares, comunicaremos a <strong>ANPD</strong> e os titulares afetados nos prazos previstos pela LGPD.</p>
+
+    <h2 id="s9">9. Seus direitos como titular</h2>
+    <p>A LGPD garante a você, como titular, os seguintes direitos (art. 18):</p>
+    <ul>
+      <li>Confirmar a existência de tratamento dos seus dados.</li>
+      <li>Acessar seus dados.</li>
+      <li>Corrigir dados incompletos, inexatos ou desatualizados.</li>
+      <li>Solicitar anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade.</li>
+      <li>Portabilidade dos dados (exportação em formato estruturado — disponibilizamos PDF e CSV).</li>
+      <li>Eliminação dos dados tratados com base no consentimento, ressalvadas as hipóteses de retenção legal (item 7).</li>
+      <li>Informação sobre as entidades com as quais compartilhamos dados.</li>
+      <li>Revogar o consentimento a qualquer momento.</li>
+      <li>Peticionar perante a Autoridade Nacional de Proteção de Dados (<a href="https://www.gov.br/anpd" target="_blank" rel="noopener">ANPD</a>).</li>
+    </ul>
+    <p>Para exercer qualquer um desses direitos, envie um e-mail para o nosso Encarregado (DPO) — endereço no item 14. Responderemos em até <strong>15 (quinze) dias</strong>.</p>
+
+    <h2 id="s10">10. Cookies e tecnologias similares</h2>
+    <p>No <strong>site institucional</strong> (este endereço web), usamos apenas cookies estritamente necessários para o funcionamento da página e cookies analíticos agregados (sem identificar você). Não usamos cookies de marketing nem de rastreamento de terceiros.</p>
+    <p>No <strong>aplicativo móvel</strong>, não usamos cookies; usamos identificadores locais necessários para manter sua sessão e enviar notificações push (quando você autoriza).</p>
+
+    <h2 id="s11">11. Dados de crianças e adolescentes</h2>
+    <p>É comum que pacientes do multiterapia sejam crianças ou adolescentes em terapia. O tratamento desses dados é feito com base no <strong>consentimento específico e em destaque dado por pelo menos um dos pais ou responsáveis legais</strong>, conforme art. 14 da LGPD, e sempre no melhor interesse do menor.</p>
+    <p>Pais ou responsáveis podem, a qualquer momento, solicitar acesso, correção ou exclusão dos dados do menor pelos canais de contato.</p>
+
+    <h2 id="s12">12. Transferência internacional de dados</h2>
+    <p>Parte da nossa infraestrutura é operada por provedores cloud (Google Firebase) que podem armazenar dados em servidores fora do Brasil — especialmente nos Estados Unidos e na União Europeia. Quando isso ocorre, garantimos que a transferência respeita os requisitos do art. 33 da LGPD (país com nível adequado de proteção ou cláusulas contratuais específicas).</p>
+
+    <h2 id="s13">13. Alterações nesta política</h2>
+    <p>Podemos atualizar esta Política de Privacidade para refletir mudanças no serviço, na legislação ou em práticas de segurança. Quando a mudança for relevante, avisaremos você por e-mail e/ou por aviso destacado no app, com pelo menos <strong>30 dias</strong> de antecedência.</p>
+    <p>A versão e a data no topo desta página indicam a vigência atual. Versões anteriores podem ser solicitadas pelo e-mail do DPO.</p>
+
+    <h2 id="s14">14. Contato e Encarregado pelo Tratamento de Dados (DPO)</h2>
+    <p>Para qualquer dúvida, solicitação de direito do titular, denúncia ou comunicação relativa a esta política:</p>
+    <ul>
+      <li><strong>Encarregado (DPO):</strong> <span class="placeholder">{{NOME DO DPO}}</span></li>
+      <li><strong>E-mail do DPO:</strong> <span class="placeholder">{{dpo@multiterapia.com.br}}</span></li>
+      <li><strong>E-mail geral:</strong> <span class="placeholder">{{contato@multiterapia.com.br}}</span></li>
+      <li><strong>Endereço postal:</strong> <span class="placeholder">{{ENDEREÇO COMPLETO}}</span></li>
+    </ul>
+    <p>Você também pode entrar em contato com a Autoridade Nacional de Proteção de Dados — <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">www.gov.br/anpd</a>.</p>
+
+    <div class="note">
+      <b>Documento vivo.</b> Esta política foi redigida em conformidade com a LGPD em vigor na data da última atualização. Em caso de divergência entre traduções desta política, prevalece a versão em português brasileiro.
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <a class="b" href="Landing.html">
+      <span class="ic"><img src="assets/svg/mark_white.svg" alt=""/></span>
+      <span><b>multiterapia</b></span>
+    </a>
+    <div class="links">
+      <a href="Landing.html">Site</a>
+      <a href="Privacidade.html">Privacidade</a>
+      <a href="#" onclick="return false">Termos</a>
+      <a href="#s14">Contato DPO</a>
+    </div>
+    <div class="copy">© 2026 multiterapia · Cuidado conectado. Documento legal sob LGPD (Lei 13.709/2018).</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 100" width="520" height="100" role="img">
+  <title>Multiterapia — lockup horizontal</title>
+  <desc>Marca Multiterapia em formato horizontal.</desc>
+  <rect x="0" y="10" width="80" height="80" rx="18" fill="#0F766E"></rect>
+  <path d="M 24 70 L 24 34 L 40 57 L 56 34 L 56 70" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="40" cy="65" r="3.5" fill="#F97362"></circle>
+  <text x="100" y="58" font-family="Poppins, Inter, system-ui, sans-serif" font-size="36" font-weight="500" fill="#0F766E" letter-spacing="-1">multiterapia</text>
+  <text x="100" y="80" font-family="Poppins, Inter, system-ui, sans-serif" font-size="12" font-weight="400" fill="#5C7B7A" letter-spacing="0.4">fonoaudiologia · fisioterapia · psicologia</text>
+</svg>

@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>multiterapia · brand assets</title>
+<link rel="icon" type="image/svg+xml" href="assets/svg/icon_primary.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0F766E; --teal-700:#0a5953; --teal-50:#e3efed;
+    --coral:#F97362; --coral-50:#fde4df;
+    --light:#F5F1EB; --paper:#FBF8F2;
+    --border:#E5DFD3; --border-2:#D7CFBF;
+    --muted:#5C7B7A; --ink:#1F2937; --ink-2:#374151;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--light);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  a{color:var(--teal);text-decoration:none}
+  h1,h2,h3,h4{margin:0;font-family:'Poppins';letter-spacing:-0.02em}
+  h1{font-size:64px;font-weight:600;line-height:1.02;letter-spacing:-0.03em}
+  h2{font-size:32px;font-weight:600}
+  h3{font-size:18px;font-weight:600}
+  h4{font-size:12px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  p{margin:0;line-height:1.6}
+  .page{max-width:1240px;margin:0 auto;padding:56px 48px 120px}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+
+  /* HEADER */
+  header.hero{display:grid;grid-template-columns:1.3fr .9fr;gap:48px;align-items:end;padding-bottom:48px;border-bottom:1px solid var(--border)}
+  header.hero h1{margin-top:18px;max-width:680px}
+  header.hero h1 em{font-style:normal;color:var(--coral)}
+  header.hero .lead{margin-top:24px;font-size:18px;color:var(--ink-2);max-width:580px}
+  .meta{display:flex;flex-direction:column;gap:12px}
+  .meta .row{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px dashed var(--border-2);padding-top:8px}
+  .meta .row b{color:var(--ink);font-weight:500}
+
+  /* SECTION HEAD */
+  section{margin-top:88px}
+  .sec-head{display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:36px;align-items:start}
+  .sec-head .num{font-family:'JetBrains Mono';font-size:13px;color:var(--muted);letter-spacing:0.12em;padding-top:14px}
+  .sec-head .num .bar{display:block;width:32px;height:2px;background:var(--coral);margin-bottom:14px}
+  .sec-head h2 + p{margin-top:14px;font-size:16px;color:var(--ink-2);max-width:620px}
+
+  /* LOGO STAGES (master shots) */
+  .stages{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .stage{border-radius:24px;overflow:hidden;border:1px solid var(--border);background:#fff;display:flex;flex-direction:column}
+  .stage .preview{aspect-ratio:1;display:grid;place-items:center;padding:8%}
+  .stage .preview img{max-width:100%;max-height:100%}
+  .stage.primary .preview{background:var(--teal)}
+  .stage.light .preview{background:var(--light)}
+  .stage.dark .preview{background:#0b1118}
+  .stage .info{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border);background:#fff}
+  .stage .info h3{font-size:16px}
+  .stage .info p{font-size:13px;color:var(--muted)}
+  .stage .info .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:11.5px;color:var(--muted)}
+  .stage .info .row a{color:var(--ink);font-weight:500}
+
+  /* DOWNLOAD TABLE for individual files */
+  .files{background:var(--paper);border:1px solid var(--border);border-radius:20px;overflow:hidden}
+  .files .row{display:grid;grid-template-columns:80px 1fr 120px 100px 120px;gap:18px;padding:14px 22px;align-items:center;border-top:1px solid var(--border);font-size:14px}
+  .files .row:first-child{border-top:0;background:#fff;font-size:12px;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);font-weight:500}
+  .files .thumb{width:48px;height:48px;border-radius:10px;border:1px solid var(--border);display:grid;place-items:center;overflow:hidden}
+  .files .thumb.dark{background:#0b1118;border-color:#1c2740}
+  .files .thumb.tealbg{background:var(--teal)}
+  .files .thumb.lightbg{background:var(--light)}
+  .files .thumb img{max-width:70%;max-height:70%}
+  .files .name b{display:block;font-weight:500;color:var(--ink)}
+  .files .name small{color:var(--muted);font-size:12px}
+  .files .type{font-family:'JetBrains Mono';font-size:12px;color:var(--muted)}
+  .files .size{font-family:'JetBrains Mono';font-size:12px;color:var(--muted)}
+  .files a.dl{font-family:Poppins;font-size:13px;font-weight:500;padding:8px 14px;border-radius:10px;background:var(--teal);color:#fff;text-align:center}
+  .files a.dl:hover{background:var(--teal-700)}
+  .files a.dl.alt{background:#fff;color:var(--ink);border:1px solid var(--border)}
+
+  /* LOCKUPS */
+  .lockups{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .lockup{background:#fff;border:1px solid var(--border);border-radius:20px;padding:48px;display:flex;align-items:center;justify-content:center;min-height:200px}
+  .lockup.dark{background:#0b1118}
+  .lockup.teal{background:var(--teal)}
+  .lockup img{max-width:80%;max-height:160px}
+  .lockup-meta{margin-top:10px;font-size:12px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}
+
+  /* COLOR SWATCHES */
+  .swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .sw{border-radius:14px;border:1px solid var(--border);overflow:hidden;background:#fff}
+  .sw .chip{height:88px}
+  .sw .info{padding:12px;display:flex;flex-direction:column;gap:2px}
+  .sw .info .n{font-size:13px;font-weight:500;color:var(--ink)}
+  .sw .info .h{font-family:'JetBrains Mono';font-size:11px;color:var(--muted)}
+
+  /* SPLASH */
+  .splash-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .splash-frame{aspect-ratio:9/19.5;border-radius:36px;background:#0f1115;padding:10px;margin:0 auto;max-width:300px;box-shadow:0 30px 60px -25px rgba(0,0,0,.3)}
+  .splash-frame .scr{border-radius:28px;overflow:hidden;height:100%;background:#fff;display:grid;place-items:center;position:relative}
+  .splash-frame .scr.dark{background:#0b1118}
+  .splash-frame .scr img.mark{width:36%}
+  .splash-frame .scr .wm{position:absolute;bottom:32px;font-family:Poppins;font-size:13px;letter-spacing:-0.01em;font-weight:500;color:var(--muted)}
+  .splash-frame .scr.dark .wm{color:rgba(255,255,255,.6)}
+  .splash-card{background:var(--paper);border:1px solid var(--border);border-radius:20px;padding:32px}
+  .splash-card.dark{background:#0b1118;color:#fff;border-color:#1c2740}
+  .splash-card h3{margin-top:14px}
+  .splash-card p{margin-top:6px;font-size:14px;color:var(--ink-2)}
+  .splash-card.dark p{color:rgba(255,255,255,.7)}
+
+  /* USAGE DO/DONT */
+  .usage{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .u-card{border:1px solid var(--border);border-radius:20px;padding:0;overflow:hidden;background:#fff}
+  .u-card .pic{aspect-ratio:16/10;display:grid;place-items:center;padding:8%}
+  .u-card .pic img{max-width:60%}
+  .u-card.do .pic{background:var(--teal-50)}
+  .u-card.dont .pic{background:#fde4df;position:relative}
+  .u-card.dont .pic img{filter:hue-rotate(180deg) saturate(0.3);opacity:.7}
+  .u-card.dont .pic::after{content:"";position:absolute;inset:24px;border:2px dashed #b94432;border-radius:14px;pointer-events:none}
+  .u-card .info{padding:20px 24px}
+  .u-card .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;padding:5px 10px;border-radius:999px}
+  .u-card.do .tag{background:var(--teal-50);color:var(--teal-700)}
+  .u-card.dont .tag{background:#fde4df;color:#b94432}
+  .u-card .info p{margin-top:10px;font-size:14px;color:var(--ink-2)}
+
+  footer{margin-top:120px;padding-top:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:12px;color:var(--muted);letter-spacing:0.08em}
+
+  @media (max-width:980px){
+    .page{padding:36px 24px}
+    header.hero,.sec-head,.stages,.lockups,.splash-row,.usage{grid-template-columns:1fr}
+    .swatches{grid-template-columns:repeat(3,1fr)}
+    .files .row{grid-template-columns:60px 1fr 100px;font-size:13px}
+    .files .row > .size,.files .row > .type{display:none}
+    h1{font-size:42px}
+  }
+</style>
+</head>
+<body data-screen-label="Brand assets">
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="hero">
+    <div>
+      <span class="kicker"><span class="dot"></span> Pacote de marca · v1.0 · 2026</span>
+      <h1>O kit completo<br/>da <em>multiterapia</em>.</h1>
+      <p class="lead">Logos, ícones, lockups e telas de splash — pronto para usar na App Store, Google Play, redes sociais, slides e site. Light + dark, vetor (SVG) e raster (PNG 1024).</p>
+    </div>
+    <aside class="meta">
+      <div class="row"><span>Total de assets</span><b>16 arquivos</b></div>
+      <div class="row"><span>Variantes</span><b>Primário · Light · Dark</b></div>
+      <div class="row"><span>Formatos</span><b>SVG · PNG @1024</b></div>
+      <div class="row"><span>Tipografia</span><b>Poppins · 300/400/500/700</b></div>
+      <div class="row"><span>Cores base</span><b>Teal #0F766E · Coral #F97362</b></div>
+    </aside>
+  </header>
+
+  <!-- 01 MASTER ICONS -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>01 · ÍCONE MESTRE</div>
+      <div>
+        <h2>Três variantes,<br/>um único sistema.</h2>
+        <p>A geometria do M permanece idêntica nas três versões — só as cores se adaptam ao ambiente. Use a variante <b>primária</b> sempre que possível; as outras existem para superfícies que não comportam o fundo teal.</p>
+      </div>
+    </div>
+
+    <div class="stages">
+      <div class="stage primary">
+        <div class="preview"><img src="assets/svg/mark_white.svg" alt="Master primário"/></div>
+        <div class="info">
+          <h3>Master · Primário</h3>
+          <p>Fundo de marca. Uso principal.</p>
+          <div class="row"><span>master_primary_1024.png · 1024×1024</span><a href="assets/brand/master_primary.png" download>Baixar PNG ↓</a></div>
+        </div>
+      </div>
+      <div class="stage light">
+        <div class="preview"><img src="assets/svg/icon_light.svg" alt="Master light"/></div>
+        <div class="info">
+          <h3>Master · Fundo claro</h3>
+          <p>Superfícies neutras, cards, papelaria.</p>
+          <div class="row"><span>master_light_1024.png · 1024×1024</span><a href="assets/brand/master_light.png" download>Baixar PNG ↓</a></div>
+        </div>
+      </div>
+      <div class="stage dark">
+        <div class="preview"><img src="assets/svg/icon_dark.svg" alt="Master dark"/></div>
+        <div class="info">
+          <h3>Master · Modo escuro</h3>
+          <p>Tema noturno, splash OLED, vídeo.</p>
+          <div class="row"><span>master_dark_1024.png · 1024×1024</span><a href="assets/brand/master_dark.png" download>Baixar PNG ↓</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 LOCKUPS -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>02 · LOCKUPS</div>
+      <div>
+        <h2>Marca + wordmark<br/>em duas orientações.</h2>
+        <p>Use o <b>horizontal</b> em headers de site e e-mail; o <b>vertical</b> em badges, papel timbrado e materiais de pitch. Nunca recomponha — sempre use o arquivo fornecido.</p>
+      </div>
+    </div>
+
+    <div class="lockups">
+      <div>
+        <div class="lockup"><img src="assets/svg/lockup_h.svg" alt="Lockup horizontal"/></div>
+        <div class="lockup-meta">Horizontal · fundo claro</div>
+      </div>
+      <div>
+        <div class="lockup dark"><img src="assets/svg/lockup_v.svg" alt="Lockup vertical" style="filter:brightness(1.4)"/></div>
+        <div class="lockup-meta">Vertical · fundo escuro</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ARQUIVOS PARA DOWNLOAD -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>03 · ARQUIVOS</div>
+      <div>
+        <h2>Tudo em PNG e SVG.</h2>
+        <p>Lista completa dos arquivos do pacote. PNG @1024 para uso geral e store; SVG para qualquer escala.</p>
+      </div>
+    </div>
+
+    <div class="files">
+      <div class="row"><span>Preview</span><span>Arquivo</span><span>Tipo</span><span>Tamanho</span><span>Download</span></div>
+
+      <div class="row">
+        <div class="thumb tealbg"><img src="assets/svg/mark_white.svg" alt=""/></div>
+        <div class="name"><b>master_primary.png</b><small>Ícone mestre · fundo teal · uso principal</small></div>
+        <span class="type">PNG · 1024²</span>
+        <span class="size">~80 KB</span>
+        <a class="dl" href="assets/brand/master_primary.png" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb lightbg"><img src="assets/svg/icon_light.svg" alt=""/></div>
+        <div class="name"><b>master_light.png</b><small>Ícone mestre · fundo claro · superfícies neutras</small></div>
+        <span class="type">PNG · 1024²</span>
+        <span class="size">~75 KB</span>
+        <a class="dl" href="assets/brand/master_light.png" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb dark"><img src="assets/svg/icon_dark.svg" alt=""/></div>
+        <div class="name"><b>master_dark.png</b><small>Ícone mestre · modo escuro · tema noturno</small></div>
+        <span class="type">PNG · 1024²</span>
+        <span class="size">~70 KB</span>
+        <a class="dl" href="assets/brand/master_dark.png" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb tealbg"><img src="assets/svg/mark_white.svg" alt=""/></div>
+        <div class="name"><b>mark_only_teal.png</b><small>Símbolo isolado · sem fundo · uso em badges</small></div>
+        <span class="type">PNG · 1024²</span>
+        <span class="size">~38 KB</span>
+        <a class="dl" href="assets/brand/mark_teal.png" download>Baixar ↓</a>
+      </div>
+
+      <div class="row">
+        <div class="thumb tealbg"><img src="assets/svg/mark_white.svg" alt=""/></div>
+        <div class="name"><b>multiterapia_mark_only.svg</b><small>Vetor · símbolo isolado · escalonável</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~4 KB</span>
+        <a class="dl alt" href="assets/svg/mark.svg" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb"><img src="assets/svg/lockup_h.svg" alt="" style="max-width:88%"/></div>
+        <div class="name"><b>multiterapia_lockup_horizontal.svg</b><small>Lockup horizontal · ícone + wordmark</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~6 KB</span>
+        <a class="dl alt" href="assets/svg/lockup_h.svg" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb"><img src="assets/svg/lockup_v.svg" alt=""/></div>
+        <div class="name"><b>multiterapia_lockup_vertical.svg</b><small>Lockup vertical · ícone sobre wordmark</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~6 KB</span>
+        <a class="dl alt" href="assets/svg/lockup_v.svg" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb tealbg"><img src="assets/svg/icon_primary.svg" alt=""/></div>
+        <div class="name"><b>multiterapia_icon_primary.svg</b><small>Ícone mestre · variante primária · vetor</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~5 KB</span>
+        <a class="dl alt" href="assets/svg/icon_primary.svg" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb lightbg"><img src="assets/svg/icon_light.svg" alt=""/></div>
+        <div class="name"><b>multiterapia_icon_light.svg</b><small>Ícone mestre · variante light · vetor</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~5 KB</span>
+        <a class="dl alt" href="assets/svg/icon_light.svg" download>Baixar ↓</a>
+      </div>
+      <div class="row">
+        <div class="thumb dark"><img src="assets/svg/icon_dark.svg" alt=""/></div>
+        <div class="name"><b>multiterapia_icon_dark.svg</b><small>Ícone mestre · variante dark · vetor</small></div>
+        <span class="type">SVG</span>
+        <span class="size">~5 KB</span>
+        <a class="dl alt" href="assets/svg/icon_dark.svg" download>Baixar ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PALETA -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>04 · PALETA</div>
+      <div>
+        <h2>Cores que cuidam.</h2>
+        <p>Teal como base — calma, confiança, ambiente clínico. Coral como acento — calor humano, presença, cuidado. Neutros bege como respiro para que a marca não pese.</p>
+      </div>
+    </div>
+
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0F766E"></div><div class="info"><span class="n">Teal · Brand</span><span class="h">#0F766E</span></div></div>
+      <div class="sw"><div class="chip" style="background:#F97362"></div><div class="info"><span class="n">Coral · Accent</span><span class="h">#F97362</span></div></div>
+      <div class="sw"><div class="chip" style="background:#F5F1EB;border-bottom:1px solid var(--border)"></div><div class="info"><span class="n">Light · Surface</span><span class="h">#F5F1EB</span></div></div>
+      <div class="sw"><div class="chip" style="background:#E5DFD3"></div><div class="info"><span class="n">Border</span><span class="h">#E5DFD3</span></div></div>
+      <div class="sw"><div class="chip" style="background:#5C7B7A"></div><div class="info"><span class="n">Muted</span><span class="h">#5C7B7A</span></div></div>
+      <div class="sw"><div class="chip" style="background:#1F2937"></div><div class="info"><span class="n">Ink</span><span class="h">#1F2937</span></div></div>
+    </div>
+  </section>
+
+  <!-- 05 SPLASH -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>05 · SPLASH SCREEN</div>
+      <div>
+        <h2>O momento de abertura.</h2>
+        <p>A primeira tela que o usuário vê. Centralizada, sem ruído — apenas o ícone mestre e o wordmark. Geramos light e dark automaticamente conforme o tema do dispositivo.</p>
+      </div>
+    </div>
+
+    <div class="splash-row">
+      <div class="splash-card">
+        <h4>Splash · light</h4>
+        <h3 style="margin-top:8px">Fundo bege<br/>marca ao centro</h3>
+        <p>Usado quando o sistema está em tema claro. Disponível em 1×, 2× e 3× nas pastas de splash.</p>
+        <div class="splash-frame" style="margin-top:28px">
+          <div class="scr">
+            <img class="mark" src="assets/svg/mark.svg" alt=""/>
+            <div class="wm">multiterapia</div>
+          </div>
+        </div>
+      </div>
+      <div class="splash-card dark">
+        <h4 style="color:rgba(255,255,255,.55)">Splash · dark</h4>
+        <h3 style="margin-top:8px;color:#fff">Fundo escuro<br/>versão noturna</h3>
+        <p>Usado em OLED e tema noturno. Mesma composição, contraste invertido.</p>
+        <div class="splash-frame" style="margin-top:28px">
+          <div class="scr dark">
+            <img class="mark" src="assets/svg/icon_dark.svg" alt=""/>
+            <div class="wm">multiterapia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 USO -->
+  <section>
+    <div class="sec-head">
+      <div class="num"><span class="bar"></span>06 · USO CORRETO</div>
+      <div>
+        <h2>O que fazer<br/>— e o que evitar.</h2>
+        <p>O ícone foi calibrado para funcionar em três fundos. Toda alteração — fundo errado, esticamento, recoloração — quebra a leitura da marca.</p>
+      </div>
+    </div>
+
+    <div class="usage">
+      <div class="u-card do">
+        <div class="pic"><img src="assets/svg/mark.svg" alt=""/></div>
+        <div class="info">
+          <span class="tag">✓ Faça</span>
+          <p>Use o ícone primário sobre fundo teal de marca, ou em superfícies neutras com a variante light correspondente.</p>
+        </div>
+      </div>
+      <div class="u-card dont">
+        <div class="pic" style="background:linear-gradient(45deg,#ff00ff,#ffaa00)"><img src="assets/svg/mark.svg" alt=""/></div>
+        <div class="info">
+          <span class="tag">✗ Não faça</span>
+          <p>Não aplique o ícone sobre gradientes saturados, fotos ou cores fora da paleta — perde contraste e identidade.</p>
+        </div>
+      </div>
+      <div class="u-card do">
+        <div class="pic" style="background:#fff"><img src="assets/svg/icon_light.svg" alt="" style="border:1px solid var(--border);border-radius:18px;padding:8px;background:var(--light)"/></div>
+        <div class="info">
+          <span class="tag">✓ Faça</span>
+          <p>Mantenha espaço livre equivalente ao raio do canto arredondado em todas as direções.</p>
+        </div>
+      </div>
+      <div class="u-card dont">
+        <div class="pic" style="background:var(--light)"><img src="assets/svg/mark.svg" alt="" style="transform:scaleX(1.4);max-width:75%"/></div>
+        <div class="info">
+          <span class="tag">✗ Não faça</span>
+          <p>Não estique, distorça ou rotacione o ícone. As proporções foram desenhadas para os arquivos fornecidos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>MULTITERAPIA · BRAND ASSETS · v1.0</span>
+    <span>Poppins · #0F766E · #F97362</span>
+    <span>2026 · CUIDADO CONECTADO</span>
+  </footer>
+
+</div>
+</body>
+</html>

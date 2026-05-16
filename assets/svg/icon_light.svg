@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="512" height="512" role="img">
+  <title>Multiterapia</title>
+  <desc>Logo do aplicativo Multiterapia.</desc>
+  <rect x="2" y="2" width="296" height="296" rx="68" fill="#F5F1EB" stroke="#E5DFD3" stroke-width="1.5"></rect>
+  <path d="M 90,225 L 90,90 L 150,175 L 210,90 L 210,225" fill="none" stroke="#0F766E" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="150" cy="208" r="13" fill="#F97362"></circle>
+</svg>

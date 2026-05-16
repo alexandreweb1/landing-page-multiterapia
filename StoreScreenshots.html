@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>multiterapia · store screenshots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>html,body{margin:0;background:#1a1f2a;font-family:'Poppins',system-ui,sans-serif}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="lib/design-canvas.jsx"></script>
+<script type="text/babel" src="store/screenshot.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+
+// Five marketing screens, mapped to actual app screens
+const SHOTS = [
+  {
+    kicker: '01 · Cuidado conectado',
+    title: 'Toda a terapia||num *só lugar*.',
+    sub: 'Fono, fisio e psico no mesmo aplicativo. Para terapeutas e pacientes.',
+    screen: { light: 'assets/screens/light/04_terapeuta_hoje.png', dark: 'assets/screens/dark/04_terapeuta_hoje.png' },
+  },
+  {
+    kicker: '02 · Agenda',
+    title: 'Sua semana||*inteira* numa tela.',
+    sub: 'Sessões coloridas por especialidade. Bloqueio, encaixe e remarcação em dois toques.',
+    screen: { light: 'assets/screens/light/05_agenda_semanal.png', dark: 'assets/screens/dark/05_agenda_semanal.png' },
+  },
+  {
+    kicker: '03 · Pacientes',
+    title: 'Cada paciente,||um *cuidado* único.',
+    sub: 'Prontuário leve, evolução em gráfico e próxima sessão sempre à mão.',
+    screen: { light: 'assets/screens/light/07_detalhe_do_paciente.png', dark: 'assets/screens/dark/07_detalhe_do_paciente.png' },
+  },
+  {
+    kicker: '04 · Sessão ao vivo',
+    title: 'Anote enquanto||*atende*.',
+    sub: 'Cronômetro, exercícios e anotações na mesma tela — tudo salvo no prontuário.',
+    screen: { light: 'assets/screens/light/09_sessao_notas.png', dark: 'assets/screens/dark/09_sessao_notas.png' },
+  },
+  {
+    kicker: '05 · Chat clínico',
+    title: 'Conectado entre||as *sessões*.',
+    sub: 'Conversa segura com responsáveis e pacientes — dentro do app, fora do WhatsApp.',
+    screen: { light: 'assets/screens/light/10_chat.png', dark: 'assets/screens/dark/10_chat.png' },
+  },
+];
+
+const PLATFORMS = {
+  ios:     { w: 1290, h: 2796, label: 'iPhone 6.7"' },
+  android: { w: 1080, h: 1920, label: 'Phone' },
+};
+
+function Section({ title, platform, theme }) {
+  const dims = PLATFORMS[platform];
+  return (
+    <DCSection id={`${platform}-${theme}`} title={title}>
+      {SHOTS.map((s, i) => (
+        <DCArtboard
+          key={i}
+          id={`${platform}-${theme}-${i+1}`}
+          label={`${String(i+1).padStart(2,'0')} · ${s.kicker.split('·')[1].trim()}`}
+          width={dims.w}
+          height={dims.h}
+        >
+          <Screenshot
+            platform={platform}
+            theme={theme}
+            kicker={s.kicker}
+            title={s.title}
+            sub={s.sub}
+            screen={s.screen[theme]}
+            width={dims.w}
+            height={dims.h}
+          />
+        </DCArtboard>
+      ))}
+    </DCSection>
+  );
+}
+
+function App() {
+  return (
+    <DesignCanvas
+      title="multiterapia · store screenshots"
+      subtitle="App Store + Google Play · light & dark · 5 telas por loja"
+      defaultZoom={0.18}
+    >
+      <Section title="App Store · Light"  platform="ios"     theme="light" />
+      <Section title="App Store · Dark"   platform="ios"     theme="dark"  />
+      <Section title="Google Play · Light" platform="android" theme="light" />
+      <Section title="Google Play · Dark"  platform="android" theme="dark"  />
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
