@@ -285,6 +285,48 @@
   details.qa[open] summary .plus{transform:rotate(45deg);background:var(--teal);color:#fff;border-color:var(--teal)}
   details.qa p{margin-top:14px;color:var(--ink-2);font-size:15px;line-height:1.65}
 
+  /* ---------- PRIVACY SECTION ---------- */
+  .privacy{padding:120px 0 60px;position:relative}
+  .privacy .head{text-align:center;max-width:760px;margin:0 auto 56px}
+  .privacy .head h2{margin-top:18px}
+  .privacy .head p{margin-top:18px;font-size:18px;color:var(--ink-2)}
+  .privacy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1080px;margin:0 auto}
+  .pcard{background:#fff;border:1px solid var(--border);border-radius:22px;padding:32px;display:flex;flex-direction:column;gap:14px;min-height:240px;transition:transform .2s, box-shadow .2s, border-color .2s}
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 24px 50px -30px rgba(15,118,110,.35);border-color:var(--teal-50)}
+  .pcard .ico{width:54px;height:54px;border-radius:14px;background:var(--teal-50);color:var(--teal);display:grid;place-items:center}
+  .pcard .ico svg{width:28px;height:28px}
+  .pcard.accent .ico{background:var(--coral-50);color:#a93826}
+  .pcard h3{font-size:20px;letter-spacing:-0.01em}
+  .pcard p{color:var(--ink-2);font-size:14.5px;line-height:1.6}
+  .privacy-foot{margin-top:48px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .privacy-foot .lgpd-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);background:var(--paper);border:1px solid var(--border);padding:6px 14px;border-radius:999px}
+  .privacy-foot .lgpd-tag b{color:var(--teal);font-weight:600}
+  .btn-link{display:inline-flex;align-items:center;gap:8px;color:var(--teal);font-weight:500;font-size:15px;padding:14px 22px;border:1px solid var(--teal);border-radius:12px;transition:background .15s, color .15s}
+  .btn-link:hover{background:var(--teal);color:#fff}
+  .btn-link svg{width:16px;height:16px;transition:transform .15s}
+  .btn-link:hover svg{transform:translateX(3px)}
+
+  /* ---------- COOKIE BANNER ---------- */
+  .cookie-banner{position:fixed;bottom:24px;left:24px;right:24px;max-width:680px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:18px;padding:18px 22px;box-shadow:0 30px 80px -20px rgba(0,0,0,.25), 0 10px 30px -15px rgba(15,118,110,.2);display:flex;align-items:center;gap:18px;z-index:100;font-size:14px;color:var(--ink-2);animation:cookieIn .35s ease-out}
+  .cookie-banner.hidden{display:none}
+  @keyframes cookieIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .cookie-banner .em{font-size:24px}
+  .cookie-banner .tx{flex:1;line-height:1.5}
+  .cookie-banner .tx b{color:var(--ink);font-weight:600}
+  .cookie-banner .tx a{color:var(--teal);font-weight:500;text-decoration:underline}
+  .cookie-banner .acts{display:flex;gap:8px;flex-shrink:0}
+  .cookie-banner .btn{padding:10px 16px;font-size:13.5px;border-radius:10px;border:0;cursor:pointer;font-family:Poppins;font-weight:500;transition:background .15s, transform .12s}
+  .cookie-banner .btn-accept{background:var(--teal);color:#fff}
+  .cookie-banner .btn-accept:hover{background:var(--teal-700);transform:translateY(-1px)}
+  .cookie-banner .btn-deny{background:transparent;color:var(--ink-2);border:1px solid var(--border)}
+  .cookie-banner .btn-deny:hover{background:var(--light)}
+
+  @media (max-width:720px){
+    .cookie-banner{flex-direction:column;align-items:stretch;text-align:left;left:12px;right:12px;bottom:12px;padding:16px 18px;gap:12px}
+    .cookie-banner .em{display:none}
+    .cookie-banner .acts{justify-content:flex-end}
+  }
+
   /* ---------- FOOTER ---------- */
   footer{background:var(--ink);color:#fff;padding:80px 0 32px;border-top-left-radius:48px;border-top-right-radius:48px;margin-top:60px}
   .foot-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:48px}
@@ -306,7 +348,7 @@
     h1{font-size:54px} h2{font-size:36px}
     .hero{padding:48px 0}
     .hero .container,.features .head,.why .container,.cta-card,.foot-grid{grid-template-columns:1fr}
-    .lanes-grid,.fgrid,.showrow,.how-row,.plans{grid-template-columns:1fr}
+    .lanes-grid,.fgrid,.showrow,.how-row,.plans,.privacy-grid{grid-template-columns:1fr}
     .how-row::before{display:none}
     .navlinks{display:none}
     .showcase{margin:0;border-radius:0}
@@ -328,6 +370,7 @@
       <a href="#funcionalidades">Funcionalidades</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#planos">Planos</a>
+      <a href="#privacidade">Privacidade</a>
       <a href="#faq">Dúvidas</a>
     </div>
     <div class="navcta">
@@ -699,6 +742,75 @@
   </div>
 </section>
 
+<!-- ============ PRIVACIDADE ============ -->
+<section class="privacy" id="privacidade">
+  <div class="container">
+    <div class="head">
+      <span class="kicker"><span class="dot"></span> Privacidade</span>
+      <h2>Seus dados clínicos<br/>não são nossos para vender.</h2>
+      <p>Tratamos dados de saúde com o cuidado que eles exigem — criptografia em trânsito, controle de retenção e total transparência sobre o que coletamos e por quê.</p>
+    </div>
+
+    <div class="privacy-grid">
+      <div class="pcard">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Criptografia em trânsito</h3>
+        <p>TLS 1.2+ em todas as comunicações cliente-servidor. Suas anotações de sessão nunca trafegam em texto puro pela internet.</p>
+      </div>
+
+      <div class="pcard accent">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>100% LGPD-ready</h3>
+        <p>Bases legais explícitas, consentimento de responsáveis, registro de tratamento e Encarregado (DPO) designado. Em dia com a Lei 13.709/2018.</p>
+      </div>
+
+      <div class="pcard">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <h3>Exportação 1-clique</h3>
+        <p>Você leva tudo se quiser sair. Prontuário completo em PDF e CSV, sem armadilha, sem fricção, sem retenção forçada.</p>
+      </div>
+
+      <div class="pcard">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>O que NÃO coletamos</h3>
+        <p>Sem localização precisa em background, sem leitura de contatos, sem rastreio fora do app, sem perfil de marketing comportamental.</p>
+      </div>
+
+      <div class="pcard">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Acesso por perfil</h3>
+        <p>Terapeuta vê apenas seus pacientes. Paciente vê apenas o próprio prontuário. Nada é exposto entre usuários do app.</p>
+      </div>
+
+      <div class="pcard accent">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Seus direitos LGPD</h3>
+        <p>Acesso, correção, eliminação, portabilidade, revogação de consentimento — todos exercíveis pelo e-mail do nosso Encarregado.</p>
+      </div>
+    </div>
+
+    <div class="privacy-foot">
+      <span class="lgpd-tag">🔒 <b>LGPD</b> · Lei 13.709/2018 · ANPD</span>
+      <a class="btn-link" href="Privacidade.html">
+        Ler política completa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
@@ -752,6 +864,42 @@
     </div>
   </div>
 </footer>
+
+<!-- ============ COOKIE BANNER LGPD ============ -->
+<div class="cookie-banner hidden" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <span class="em" aria-hidden="true">🍪</span>
+  <div class="tx">
+    <b>Cookies neste site.</b> Usamos cookies essenciais para o funcionamento e cookies analíticos agregados — sem rastreio de marketing nem perfilamento. <a href="Privacidade.html#s10">Saber mais</a>.
+  </div>
+  <div class="acts">
+    <button class="btn btn-deny" id="cookieDeny" type="button">Recusar</button>
+    <button class="btn btn-accept" id="cookieAccept" type="button">Aceitar</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'multiterapia.cookieConsent.v1';
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+
+  try {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      banner.classList.remove('hidden');
+    }
+  } catch(e) {
+    banner.classList.remove('hidden');
+  }
+
+  function persist(choice){
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ choice: choice, at: new Date().toISOString() })); } catch(e){}
+    banner.classList.add('hidden');
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function(){ persist('accepted'); });
+  document.getElementById('cookieDeny').addEventListener('click', function(){ persist('denied'); });
+})();
+</script>
 
 </body>
 </html>
