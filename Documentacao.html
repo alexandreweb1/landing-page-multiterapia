@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>multiterapia · documentação do projeto</title>
+<link rel="icon" type="image/svg+xml" href="assets/svg/icon_primary.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0F766E;--teal-700:#0a5953;--coral:#F97362;
+    --light:#F5F1EB;--paper:#FBF8F2;--border:#E5DFD3;
+    --muted:#5C7B7A;--ink:#1F2937;--ink-2:#374151;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--light);color:var(--ink);font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .page{max-width:1180px;margin:0 auto;padding:64px 48px 100px}
+  .head{display:grid;grid-template-columns:1.4fr .8fr;gap:48px;align-items:end;padding-bottom:40px;border-bottom:1px solid var(--border)}
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .brand .ic{width:48px;height:48px;border-radius:12px;background:var(--teal);display:grid;place-items:center;box-shadow:0 8px 22px -10px rgba(15,118,110,.6)}
+  .brand .ic img{width:30px}
+  .brand b{font-size:20px;font-weight:600;letter-spacing:-0.01em}
+  h1{margin:0;font-size:72px;font-weight:600;line-height:1.02;letter-spacing:-0.035em}
+  h1 em{font-style:normal;color:var(--coral)}
+  .lead{margin-top:20px;font-size:18px;color:var(--ink-2);max-width:560px;line-height:1.55}
+  .meta{display:flex;flex-direction:column;gap:10px}
+  .meta .r{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px dashed #D7CFBF;padding-top:8px}
+  .meta .r b{color:var(--ink);font-weight:500}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+
+  .grid{margin-top:56px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .card{position:relative;background:#fff;border:1px solid var(--border);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;min-height:420px;transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -30px rgba(15,118,110,.3)}
+  .card .top{height:240px;background:var(--paper);position:relative;overflow:hidden;display:grid;place-items:center;border-bottom:1px solid var(--border)}
+  .card .top.teal{background:var(--teal)}
+  .card .top.ink{background:var(--ink)}
+  .card .top .badge{position:absolute;top:18px;left:18px;font-family:'JetBrains Mono';font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,.7);padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.12)}
+  .card .top.paper .badge{color:var(--muted);background:#fff;border:1px solid var(--border)}
+  .card .body{padding:28px 30px 32px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-0.02em}
+  .card p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+  .card .open{margin-top:auto;padding-top:18px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--teal)}
+  .card .open svg{width:16px;height:16px;transition:transform .2s}
+  .card:hover .open svg{transform:translateX(4px)}
+
+  /* Hero arts */
+  .art-phones{display:flex;gap:14px;justify-content:center}
+  .art-phones .ph{width:88px;height:170px;background:#0f1115;border-radius:18px;padding:5px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+  .art-phones .ph .scr{border-radius:14px;overflow:hidden;height:100%;background:#000}
+  .art-phones .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .art-phones .ph.b{transform:translateY(8px) rotate(-4deg)}
+  .art-phones .ph.c{transform:translateY(-6px) rotate(4deg)}
+
+  .art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:24px;width:100%}
+  .art-grid .mini{aspect-ratio:9/19;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+  .art-grid .mini img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .art-logos{display:flex;gap:18px;align-items:center}
+  .art-logos .lg{width:88px;height:88px;border-radius:22px;display:grid;place-items:center;border:1px solid var(--border)}
+  .art-logos .lg.t{background:var(--teal)} .art-logos .lg.l{background:var(--light)} .art-logos .lg.d{background:#0b1118}
+  .art-logos .lg img{width:54%}
+
+  .art-doc{display:flex;flex-direction:column;gap:8px;padding:24px;width:100%}
+  .art-doc .line{height:8px;border-radius:4px;background:rgba(15,118,110,.18)}
+  .art-doc .line.s{width:60%}
+  .art-doc .line.m{width:80%}
+  .art-doc .line.l{width:95%}
+  .art-doc .line.accent{background:var(--coral);height:10px}
+
+  footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--border);font-family:'JetBrains Mono';font-size:12px;color:var(--muted);display:flex;justify-content:space-between;letter-spacing:0.08em}
+
+  @media (max-width:880px){
+    .page{padding:40px 24px}
+    .head,.grid{grid-template-columns:1fr}
+    h1{font-size:46px}
+  }
+</style>
+</head>
+<body data-screen-label="Documentacao">
+<div class="page">
+  <header class="head">
+    <div>
+      <div class="brand"><span class="ic"><img src="assets/svg/mark_white.svg" alt=""/></span><b>multiterapia</b></div>
+      <span class="kicker"><span class="dot"></span> Documentação do projeto · v1.0</span>
+      <h1>Toda a<br/>documentação<br/>do <em>projeto</em>.</h1>
+      <p class="lead">Análise inicial do produto, landing page institucional, screenshots para App Store / Google Play (light + dark) e o kit completo de logos. Tudo costurado pelo mesmo sistema visual.</p>
+    </div>
+    <aside class="meta">
+      <div class="r"><span>Projeto</span><b>Multiterapia</b></div>
+      <div class="r"><span>Versão</span><b>1.0 · 2026</b></div>
+      <div class="r"><span>Plataformas</span><b>iOS · Android · Web</b></div>
+      <div class="r"><span>Entregáveis</span><b>4 documentos</b></div>
+    </aside>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="index.html">
+      <div class="top teal">
+        <span class="badge">01 · Marketing</span>
+        <div class="art-phones">
+          <div class="ph b"><div class="scr"><img src="assets/screens/light/08_paciente_home.png" alt=""/></div></div>
+          <div class="ph"><div class="scr"><img src="assets/screens/light/04_terapeuta_hoje.png" alt=""/></div></div>
+          <div class="ph c"><div class="scr"><img src="assets/screens/light/10_chat.png" alt=""/></div></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3>Landing page</h3>
+        <p>Site institucional do app — hero, personas, features, planos, FAQ e CTA para download nas duas lojas. Light theme, responsivo.</p>
+        <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="StoreScreenshots.html">
+      <div class="top ink">
+        <span class="badge">02 · App stores</span>
+        <div class="art-grid">
+          <div class="mini"><img src="assets/screens/dark/04_terapeuta_hoje.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/dark/05_agenda_semanal.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/dark/07_detalhe_do_paciente.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/dark/09_sessao_notas.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/light/04_terapeuta_hoje.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/light/05_agenda_semanal.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/light/07_detalhe_do_paciente.png" alt=""/></div>
+          <div class="mini"><img src="assets/screens/light/10_chat.png" alt=""/></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3>Screenshots das lojas</h3>
+        <p>5 telas de divulgação para App Store (1290×2796) e Google Play (1080×1920) — versões light e dark. Canvas com zoom e foco fullscreen.</p>
+        <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="BrandAssets.html">
+      <div class="top paper">
+        <span class="badge">03 · Marca</span>
+        <div class="art-logos">
+          <div class="lg t"><img src="assets/svg/mark.svg" alt=""/></div>
+          <div class="lg l"><img src="assets/svg/icon_light.svg" alt=""/></div>
+          <div class="lg d"><img src="assets/svg/icon_dark.svg" alt=""/></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3>Logos & brand assets</h3>
+        <p>Master primário, light e dark · lockups horizontal e vertical · paleta · splash · usos corretos. Todos os arquivos PNG e SVG para download direto.</p>
+        <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+
+    <a class="card" href="Analise.html">
+      <div class="top paper">
+        <span class="badge">04 · Análise</span>
+        <div class="art-doc">
+          <div class="line accent" style="width:40%"></div>
+          <div class="line l"></div>
+          <div class="line m"></div>
+          <div class="line s"></div>
+          <div class="line m"></div>
+          <div class="line l"></div>
+          <div class="line accent" style="width:25%;margin-top:6px"></div>
+          <div class="line l"></div>
+          <div class="line s"></div>
+        </div>
+      </div>
+      <div class="body">
+        <h3>Análise inicial</h3>
+        <p>Revisão visual das 10 telas, pontos fortes, lacunas e roadmap em 4 fases. Documento de discussão para o próximo sprint de design.</p>
+        <span class="open">Abrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    <span>MULTITERAPIA · PACOTE v1.0</span>
+    <span>2026 · CUIDADO CONECTADO</span>
+  </footer>
+</div>
+</body>
+</html>
